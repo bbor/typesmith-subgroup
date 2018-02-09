@@ -1,0 +1,11 @@
+{
+  "name": "typesmith-subgroup",
+  "version": "1.0.0",
+  "description": "Organizes child records in a typesmith database into subgroups based on their types, or based on another data key.",
+  "main": "lib/typesmith-subgroup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Robb Surridge",
+  "license": "MIT"
+}
