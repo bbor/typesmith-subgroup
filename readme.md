@@ -20,6 +20,11 @@ Note: You can configure these options globally for all record types by setting t
 
 >	When we auto-create a subgroup, it usually needs a display name. For subgroups created based on record types, you can set this name using the "subgroup_title" field for each type. For subgroups based on a key in the data, the title will be the value stored in the record under that key.
 
+`autoexpand_subgroups`
+
+>	When set to `true` (the default), each automatically created subgroup record will be marked with `toc.autoexpand = true`. In mixtape, this makes the subgroups expand automatically when you expand the parent record in the TOC.
+
+
 ## A possible type configuration example
 
 ```js
