@@ -16,34 +16,59 @@ Note: You can configure these options globally for all record types by setting t
 
 >	If you want to group child elements differently, you can assign each child record in the db a particular key, say "group". Assign the name of that key to this "subgroup_by_key" option. Then, any time the plugin sees a child record with that key in the data, it will assign the create a subgroup for that key value under the parent, and assign the record as a child of that subgroup. The record generated for the auto-created group will use as its type name the name of the key you set in this parameter. As above, if that element already exists in the db, it will be reused, so you could use that mechanism to provide content for the group.
 
-`subgroup_title`
+`default_subgroup`
 
->	When we auto-create a subgroup, it usually needs a display name. For subgroups created based on record types, you can set this name using the "subgroup_title" field for each type. For subgroups based on a key in the data, the title will be the value stored in the record under that key.
+>	When we auto-create a subgroup, a copy of this default record is used as the template for each new record we create. You can re-configure the settings in the `default_subgroup` object to change the behavior of your subgroups. The only field that is always set automatically for you is the name.
+>
+> The default settings are:
+>
+> ```js
+>     default_subgroup:{
+>     page:false,
+>     toc:{
+>       autoexpand:true
+>     },
+>     typeahead:{
+>       include:false
+>     }
+>   }
+> ```
 
-`autoexpand_subgroups`
 
->	When set to `true` (the default), each automatically created subgroup record will be marked with `toc.autoexpand = true`. In mixtape, this makes the subgroups expand automatically when you expand the parent record in the TOC.
-
-
-## A possible type configuration example
+## A possible configuration example
 
 ```js
   {
     "types":{
       "class":{
-        "subgroup_title":"Classes",
+        "default_subgroup":{
+          "content_title":"Classes"
+        }
       },
       "function":{
-        "subgroup_title":"Functions"
+        "default_subgroup":{
+          "content_title":"Functions"
+        }
       },
       "typedef":{
-        "subgroup_title":"Type definitions"   // but groups of typedefs within a class need a fancier title.
+        "default_subgroup":{
+          "content_title":"Tyoe definitions" // but groups of typedefs within a class need a fancier title.
+        }
       },
       "namespace":{
-        "subgroup_title":"Namespaces"
+        "default_subgroup":{
+          "content_title":"Namespaces"
+        }
         "subgroup_by_type":false             // let children of a namespace all get listed together without being split up by type.
       }
     }
+    "typesmith-subgroup": {
+      "default_subgroup":{
+        "toc":{
+          "autoexpand":false                 // override this one setting for all auto-created subgroups, regardless of type.
+        }
+      }
+    },
   }
 ```
 
